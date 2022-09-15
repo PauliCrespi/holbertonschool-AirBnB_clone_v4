@@ -14,7 +14,7 @@ $(document).ready(function () {
 //update the h4 tag inside the div Amenities with the list of Amenities checked
     $('DIV.amenities h4').text(Object.values(AmenityID).join(', '));
 });
-  $.getJSON('http://4cf662618b9d.4cfccddf.hbtn-cod.io:5001/api/v1/status/', function (data) {
+  $.getJSON('http://0.0.0.0:5001/api/v1/status/', function (data) {
     if (data.status == 'OK') {
       $('#api_status').addClass('available')
     } else {
