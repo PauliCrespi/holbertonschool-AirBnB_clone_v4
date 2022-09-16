@@ -36,7 +36,7 @@ def hbnb():
     places = sorted(places, key=lambda k: k.name)
 
     cache_id = uuid.uuid4()
-    return render_template('3-hbnb',
+    return render_template('3-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
                            places=places, cache_id=cache_id)
