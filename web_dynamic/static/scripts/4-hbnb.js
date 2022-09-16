@@ -15,7 +15,7 @@ $(document).ready(function () {
     $('DIV.amenities h4').text(Object.values(AmenityID).join(', '));
 });
   $.getJSON('http://0.0.0.0:5001/api/v1/status/', function (data) {
-    if (data.status == 'OK') {
+    if (data.status === 'OK') {
       $('#api_status').addClass('available')
     } else {
       $('#api_status').removeClass('available')
@@ -61,9 +61,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "http://0.0.0.0:5001/api/v1/places_search",
-            data: { 
-                JSON.stringify(AmenityID);
-            }
+            data: JSON.stringify(AmenityID),
         });
     });
 });

@@ -1,43 +1,43 @@
-//Your script must be executed only when DOM is loaded
+// Your script must be executed only when DOM is loaded
 $(document).ready(function () {
-//you must store the Amenity ID in a variable (dictionary or list)
-  let AmenityID = {}
-//if the checkbox is checked, you must store the Amenity ID in a variable (dictionary or list)
-// https://stackoverflow.com/questions/7960208/jquery-if-checkbox-is-checked
+// you must store the Amenity ID in a variable (dictionary or list)
+  const AmenityID = {};
+  // if the checkbox is checked, you must store the Amenity ID in a variable (dictionary or list)
+  // https://stackoverflow.com/questions/7960208/jquery-if-checkbox-is-checked
   $('input[type="checkbox"]').change(function () {
     if ($(this).is(':checked')) {
       AmenityID[$(this).attr('data-id')] = $(this).attr('data-name');
-//if the checkbox is unchecked, you must remove the Amenity ID from the variable
+      // if the checkbox is unchecked, you must remove the Amenity ID from the variable
     } else {
       delete AmenityID[$(this).attr('data-id')];
     }
-//update the h4 tag inside the div Amenities with the list of Amenities checked
+    // update the h4 tag inside the div Amenities with the list of Amenities checked
     $('DIV.amenities h4').text(Object.values(AmenityID).join(', '));
-});
+  });
   $.getJSON('http://0.0.0.0:5001/api/v1/status/', function (data) {
-    if (data.status == 'OK') {
-      $('#api_status').addClass('available')
+    if (data.status === 'OK') {
+      $('#api_status').addClass('available');
     } else {
-      $('#api_status').removeClass('available')
+      $('#api_status').removeClass('available');
     }
-  })
-//https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
-//https://stackoverflow.com/questions/5004233/jquery-ajax-post-example-with-php
-//https://www.w3schools.com/js/js_loop_forin.asp
+  });
+  // https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
+  // https://stackoverflow.com/questions/5004233/jquery-ajax-post-example-with-php
+  // https://www.w3schools.com/js/js_loop_forin.asp
   $.ajax({
-//Request http://0.0.0.0:5001/api/v1/places_search/
+    // Request http://0.0.0.0:5001/api/v1/places_search/
     url: 'http://0.0.0.0:5001/api/v1/places_search',
-//Send a POST request with Content-Type: application/json 
+    // Send a POST request with Content-Type: application/json
     type: 'POST',
     contentType: 'application/json',
-//and an empty dictionary in the body 
+    // and an empty dictionary in the body
     data: JSON.stringify({}),
     success: (data) => {
       data.sort(function (a, b) {
         return a.name.localeCompare(b.name);
       });
-//Loop into the result of the request and create an article tag representing
-//Place in the section.places. (info borrada en el HTLM previo)
+      // Loop into the result of the request and create an article tag representing
+      // Place in the section.places. (info borrada en el HTLM previo)
       for (const place of data) {
         const article = `
         <article>
