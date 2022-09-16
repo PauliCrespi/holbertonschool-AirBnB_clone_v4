@@ -1,4 +1,3 @@
-//Your script must be executed only when DOM is loaded
 $(document).ready(function () {
 //you must store the Amenity ID in a variable (dictionary or list)
   let AmenityID = {}
